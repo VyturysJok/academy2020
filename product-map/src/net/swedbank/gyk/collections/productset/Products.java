@@ -34,12 +34,20 @@ public class Products {
 
     //implement this
     private void addProduct(String id, String name, LocalDateTime salesDate, double amount) {
+        Product product = new Product(id, name);
+        if (productStatistics.containsKey(product)){
+            productStatistics.get(product).updateFirstSalesDate(salesDate);
+            productStatistics.get(product).updateLastSalesDate(salesDate);
+            productStatistics.get(product).updateSalesAmount(amount);
+        } else {
+            productStatistics.put(product, new ProductStatistics(salesDate, salesDate, amount));
+        }
     }
 
 
     //implement this
     public int numberOfProducts() {
-        return -1;
+        return productStatistics.size();
     }
 
     public void printAll() {
@@ -47,7 +55,7 @@ public class Products {
             Product product = productEntry.getKey();
             ProductStatistics stat = productEntry.getValue();
 
-            // implement printing here
+            System.out.println(product + " " + stat);
         }
     }
 
