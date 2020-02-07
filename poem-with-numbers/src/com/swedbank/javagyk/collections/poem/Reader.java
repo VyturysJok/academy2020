@@ -22,7 +22,7 @@ public class Reader {
         String s;
         int i = 0;
         while ((s = fileReader.readLine()) != null) {
-            fileLines.add(new PoemLine(i, s));
+            fileLines.add(new PoemLine(i++, s));
         }
 
         return fileLines;
